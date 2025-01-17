@@ -104,26 +104,105 @@ function downloadPDF() {
       1: { // Индекс колонки (нумерация начинается с 0)
         halign: 'left', // Горизонтальное центрирование
         valign: 'middle', // Вертикальное центрирование
+        fillColor: [206, 216, 105],
       },
-    },
-    didParseCell: (data) => {
-      // Настройка цветов для статусов "ON" и "OFF"
-      if (data.cell.raw === "ON") {
-        data.cell.styles.fillColor = [244, 67, 54]; // Красный фон для ON (#F44336)
-        data.cell.styles.textColor = [255, 255, 255]; // Белый текст
-      } else if (data.cell.raw === "OFF") {
-        data.cell.styles.fillColor = [76, 175, 80]; // Зеленый фон для OFF (#4CAF50)
-        data.cell.styles.textColor = [255, 255, 255]; // Белый текст
-      }
-
-      // Настройка стилей для заголовка таблицы
-      if (data.row.section === 'head') {
-        data.cell.styles.fontStyle = 'bold'; // Жирный шрифт для заголовков
-      }
     },
   });
 
   pdf.save("schedule.pdf");
 }
+
+function printTable() {
+  // Получаем HTML-код таблицы
+  const tableHTML = document.getElementById("schedule-table").outerHTML;
+
+  // Создаем новое окно для печати
+  const printWindow = window.open("", "_blank");
+
+  // Заполняем содержимое нового окна
+  printWindow.document.open();
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Poppins", sans-serif;
+        }
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+          background-color: #00eeff;
+          color-adjust: exact; /* Поддержка в Safari */
+          -webkit-print-color-adjust: exact; /* Поддержка в Webkit */
+          print-color-adjust: exact; /* Общая поддержка */
+        }
+        h1 {
+          text-align: center;
+          font-size: 2rem; /* Увеличенный размер текста */
+          color: #333333;
+          margin-bottom: 20px;
+        }
+        table {
+          width: 100%;
+          border-spacing: 0;
+          margin: 0 auto;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th,
+        td {
+          font-size: 16px;
+          padding: 5px;
+          text-align: center;
+          border: 1px solid #000000;
+        }
+        th {
+          background-color: #ff6000;
+          color: #000000;
+        }
+        td {
+          background-color: #ced869;
+        }
+        .date-cell {
+          text-align: center;
+          vertical-align: middle;
+          font-weight: bold;
+          background-color: #fffac0;
+        }
+        .name-cell {
+          font-weight: 600;
+        }
+        .status.on {
+          background-color: #F44336;
+          color: black;
+          font-weight: bold;
+        }
+        .status.off {
+          background-color: #4CAF50;
+          color: black;
+          font-weight: bold;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Work Schedule</h1> <!-- Добавляем заголовок -->
+      ${tableHTML} <!-- Вставляем таблицу -->
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+
+  // Запускаем печать
+  printWindow.print();
+}
+
+
+
+
 
 window.onload = generateSchedule;

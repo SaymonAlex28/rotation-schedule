@@ -10,7 +10,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 10px;
-  background-color: #0ef;
+  background-color: #00eeff;
 }
 
 h1 {
@@ -75,6 +75,10 @@ input[type="number"] {
   transform: translateX(2px) translateY(2px);
   box-shadow: none;
 }
+.but_createDocs {
+  display: flex;
+  justify-content: space-around;
+}
 
 .download-btn {
   display: flex;
@@ -83,7 +87,7 @@ input[type="number"] {
   padding: 10px;
   margin: 10px auto;
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
   font-size: 14px;
   font-weight: 600;
   background-color: #4CAF50;
@@ -114,13 +118,13 @@ td {
   font-size: 16px;
   padding: 5px;
   text-align: center;
-  border: 1px solid #115;
+  border: 1px solid #111155;
   /* font-size: 14px; */
 }
 
 th {
   background-color: #ff6000;
-  color: #fff;
+  color: #000000;
 }
 
 .date-cell {
@@ -131,18 +135,19 @@ th {
 }
 .name-cell {
   font-weight: 600;
+  background-color: #ced869;
 }
 
 .status.on {
   background-color: #F44336;
   /* background-color: #4CAF50; */
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
 .status.off {
   background-color: #4CAF50;
   /* background-color: #F44336; */
-  color: white;
+  color: black;
   font-weight: bold;
 }
