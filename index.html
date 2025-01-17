@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Editable Work Schedule</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Editable Work Schedule</h1>
+
+  <div class="controls">
+    <input type="date" id="start-date" value="2025-01-01" placeholder="Start Date">
+    <input type="number" id="interval-days" value="42" min="1" placeholder="Interval Days">
+    <input type="text" id="person1" value="person1" placeholder="Person1">
+    <input type="text" id="person2" value="person2" placeholder="Person2">
+    <button class="but_generate" onclick="generateSchedule()">>>> Generate Schedule <<<</button>
+  </div>
+
+  <table id="schedule-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be added dynamically -->
+    </tbody>
+  </table>
+
+  <button class="download-btn" onclick="downloadPDF()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-download"
+      viewBox="0 0 16 16">
+      <path
+        d="M.5 9.9a.5.5 0 0 1 .5.5v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3a.5.5 0 0 1 1 0v3a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3v-3a.5.5 0 0 1 .5-.5z" />
+      <path
+        d="M5.354 5.146a.5.5 0 0 1 .708 0L8 7.293V1.5a.5.5 0 0 1 1 0v5.793l1.938-2.147a.5.5 0 1 1 .724.688l-3 3.333a.5.5 0 0 1-.724 0l-3-3.333a.5.5 0 0 1 0-.708z" />
+    </svg>
+    Download PDF
+  </button>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>

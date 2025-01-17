@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Основные стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  background-color: #0ef;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.controls {
+  text-align: center;
+  margin-bottom: 20px;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  padding-right: 5px;
+}
+
+.controls input {
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px;
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #1700f6ff;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, .25), inset 2px 2px 5px rgba(255, 255, 255, .35), inset -3px -3px 5px rgba(0, 0, 0, 0);
+}
+.controls input:focus {
+  box-shadow: 0 6px 12px #00a8de;
+  background: #fffac0
+}
+.but_generate {
+  color: #fff;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 5px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #114;
+  border: none;
+  cursor: pointer;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, .25), inset 2px 2px 5px rgba(255, 255, 255, .35), inset -3px -3px 5px rgba(0, 0, 0, 0);
+}
+.but_generate:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: none;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px auto;
+  width: 100%;
+  max-width: 300px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, .25), inset 2px 2px 5px rgba(255, 255, 255, .35), inset -3px -3px 5px rgba(0, 0, 0, 0);
+}
+.download-btn:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: none;
+}
+
+.download-btn svg {
+  margin-right: 8px;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #115;
+  /* font-size: 14px; */
+}
+
+th {
+  background-color: #ff6000;
+  color: #fff;
+}
+
+.date-cell {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  background-color: #fffac0;
+}
+.name-cell {
+  font-weight: 600;
+}
+
+.status.on {
+  background-color: #F44336;
+  /* background-color: #4CAF50; */
+  color: white;
+  font-weight: bold;
+}
+
+.status.off {
+  background-color: #4CAF50;
+  /* background-color: #F44336; */
+  color: white;
+  font-weight: bold;
+}
