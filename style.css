@@ -124,7 +124,7 @@ td {
 
 th {
   background-color: #ff6000;
-  color: #000000;
+  color: #ffffff;
 }
 
 .date-cell {
@@ -141,13 +141,13 @@ th {
 .status.on {
   background-color: #F44336;
   /* background-color: #4CAF50; */
-  color: black;
+  color: white;
   font-weight: bold;
 }
 
 .status.off {
   background-color: #4CAF50;
   /* background-color: #F44336; */
-  color: black;
+  color: white;
   font-weight: bold;
 }

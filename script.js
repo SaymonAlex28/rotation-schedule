@@ -90,7 +90,7 @@ function downloadPDF() {
     },
     headStyles: {
       fillColor: [255, 96, 0], // Оранжевый фон заголовков (#FF6000)
-      textColor: [0, 0, 0], // Белый текст
+      textColor: [255, 255, 255], // Белый текст
       fontSize: 12, // Размер шрифта в заголовках
     },
     alternateRowStyles: {
@@ -102,7 +102,7 @@ function downloadPDF() {
         fillColor: [255, 250, 192],
       },
       1: { // Индекс колонки (нумерация начинается с 0)
-        halign: 'left', // Горизонтальное центрирование
+        halign: 'center', // Горизонтальное центрирование
         valign: 'middle', // Вертикальное центрирование
         fillColor: [206, 216, 105],
       },
@@ -162,7 +162,7 @@ function printTable() {
         }
         th {
           background-color: #ff6000;
-          color: #000000;
+          color: #ffffff;
         }
         td {
           background-color: #ced869;
@@ -178,12 +178,12 @@ function printTable() {
         }
         .status.on {
           background-color: #F44336;
-          color: black;
+          color: white;
           font-weight: bold;
         }
         .status.off {
           background-color: #4CAF50;
-          color: black;
+          color: white;
           font-weight: bold;
         }
       </style>
