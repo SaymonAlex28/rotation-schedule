@@ -46,7 +46,7 @@ input[type="number"] {
   font-weight: 600;
   margin: 5px;
   width: 100%;
-  max-width: 200px;
+  max-width: 160px;
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid #1700f6ff;
