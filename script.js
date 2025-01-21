@@ -20,6 +20,7 @@ function generateSchedule() {
   endDate.setFullYear(currentDate.getFullYear() + 1); // Добавляем 12 месяцев
 
   let toggle = true; // Переключатель для чередования статусов
+  const scheduleData = []; // Для сохранения данных в Local Storage
 
   while (currentDate < endDate) {
     const row1 = document.createElement("tr");
@@ -57,13 +58,136 @@ function generateSchedule() {
 
     scheduleTable.appendChild(row2);
 
+    // Сохраняем данные в массив
+    scheduleData.push({
+      date: formatDate(currentDate),
+      person1: toggle ? person1 : person2,
+      status1: "ON",
+      person2: toggle ? person2 : person1,
+      status2: "OFF",
+    });
+
     // Переключаем статус для следующей даты
     toggle = !toggle;
 
     // Увеличиваем текущую дату на указанный интервал
     currentDate.setDate(currentDate.getDate() + interval);
   }
+
+  // Сохраняем данные в Local Storage
+  localStorage.setItem("scheduleData", JSON.stringify(scheduleData));
+  localStorage.setItem("inputData", JSON.stringify({ startDateInput, intervalDaysInput, person1, person2 }));
 }
+
+function loadInputsAndSchedule() {
+  // Загружаем значения для input
+  const savedInputs = JSON.parse(localStorage.getItem("inputData"));
+  if (savedInputs) {
+    document.getElementById("start-date").value = savedInputs.startDateInput;
+    document.getElementById("interval-days").value = savedInputs.intervalDaysInput;
+    document.getElementById("person1").value = savedInputs.person1;
+    document.getElementById("person2").value = savedInputs.person2;
+  }
+
+  // Загружаем данные для таблицы
+  const savedData = JSON.parse(localStorage.getItem("scheduleData"));
+  if (savedData && Array.isArray(savedData)) {
+    const scheduleTable = document.querySelector("#schedule-table tbody");
+    scheduleTable.innerHTML = ""; // Очистка таблицы
+
+    savedData.forEach((entry) => {
+      const row1 = document.createElement("tr");
+      const dateCell = document.createElement("td");
+      dateCell.textContent = entry.date;
+      dateCell.rowSpan = 2;
+      dateCell.className = "date-cell";
+      dateCell.contentEditable = "true";
+      row1.appendChild(dateCell);
+
+      const person1Cell = document.createElement("td");
+      person1Cell.textContent = entry.person1;
+      person1Cell.className = "name-cell";
+      row1.appendChild(person1Cell);
+
+      const status1Cell = document.createElement("td");
+      status1Cell.textContent = entry.status1;
+      status1Cell.className = entry.status1 === "ON" ? "status on" : "status off";
+      row1.appendChild(status1Cell);
+
+      scheduleTable.appendChild(row1);
+
+      const row2 = document.createElement("tr");
+      const person2Cell = document.createElement("td");
+      person2Cell.textContent = entry.person2;
+      person2Cell.className = "name-cell";
+      row2.appendChild(person2Cell);
+
+      const status2Cell = document.createElement("td");
+      status2Cell.textContent = entry.status2;
+      status2Cell.className = entry.status2 === "ON" ? "status on" : "status off";
+      row2.appendChild(status2Cell);
+
+      scheduleTable.appendChild(row2);
+    });
+  }
+}
+// Загружаем данные при загрузке страницы
+window.onload = loadInputsAndSchedule;
+
+
+function saveCurrentTable() {
+  const scheduleTable = document.querySelector("#schedule-table tbody");
+  const rows = scheduleTable.querySelectorAll("tr");
+  const scheduleData = [];
+
+  for (let i = 0; i < rows.length; i += 2) {
+    const dateCell = rows[i].querySelector(".date-cell").textContent.trim();
+    const person1 = rows[i].querySelector("td:nth-child(2)").textContent.trim();
+    const status1 = rows[i].querySelector("td:nth-child(3)").textContent.trim();
+
+    const person2 = rows[i + 1].querySelector("td:nth-child(1)").textContent.trim();
+    const status2 = rows[i + 1].querySelector("td:nth-child(2)").textContent.trim();
+
+    scheduleData.push({
+      date: dateCell,
+      person1: person1,
+      status1: status1,
+      person2: person2,
+      status2: status2,
+    });
+  }
+
+  // Сохраняем таблицу в Local Storage
+  localStorage.setItem("scheduleData", JSON.stringify(scheduleData));
+
+  // Отображаем уведомление
+  showTemporaryMessage("Schedule SAVED 👌");
+}
+
+function showTemporaryMessage(message) {
+  // Создаем контейнер для сообщения
+  const messageContainer = document.createElement("div");
+  messageContainer.textContent = message;
+  messageContainer.style.position = "fixed";
+  messageContainer.style.top = "20px";
+  messageContainer.style.right = "20px";
+  messageContainer.style.padding = "10px 20px";
+  messageContainer.style.backgroundColor = "#4CAF50";
+  messageContainer.style.color = "white";
+  messageContainer.style.borderRadius = "5px";
+  messageContainer.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+  messageContainer.style.fontSize = "14px";
+  messageContainer.style.zIndex = "1000";
+
+  // Добавляем сообщение в документ
+  document.body.appendChild(messageContainer);
+
+  // Удаляем сообщение через 2 секунды
+  setTimeout(() => {
+    document.body.removeChild(messageContainer);
+  }, 2000);
+}
+
 
 
 function downloadPDF() {
@@ -205,4 +329,4 @@ function printTable() {
 
 
 
-window.onload = generateSchedule;
+// window.onload = generateSchedule;
