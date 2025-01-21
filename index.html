@@ -19,8 +19,10 @@
     <input type="number" id="interval-days" value="42" min="1" placeholder="Interval Days">
     <input type="text" id="person1" value="person1" placeholder="Person1">
     <input type="text" id="person2" value="person2" placeholder="Person2">
-    <button class="but_generate" onclick="generateSchedule()">📆Generate</button>
-    <button class="but_generate" onclick="saveCurrentTable()">💾 Save Table</button>
+    <div class="gen_buttons">
+      <button class="but_generate" onclick="generateSchedule()">📆 Generate</button>
+      <button class="but_generate" onclick="saveCurrentTable()">💾 Save Table</button>
+    </div>
   </div>
 
   <table id="schedule-table">
@@ -36,7 +38,7 @@
     </tbody>
   </table>
 
-<div class="but_createDocs">
+  <div class="but_createDocs">
     <button class="download-btn" onclick="downloadPDF()">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-download"
         viewBox="0 0 16 16">
@@ -48,14 +50,15 @@
       Download PDF
     </button>
     <button class="download-btn" onclick="printTable()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-printer" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-printer"
+        viewBox="0 0 16 16">
         <path
           d="M2 1a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm10 11H4v-2h8v2zM2 9V3h12v6H2zm3-4a1 1 0 0 0-1 1h2a1 1 0 0 0-1-1z" />
         <path d="M6 1h4v2H6V1z" />
       </svg>
       Print
     </button>
-</div>
+  </div>
 
   <script src="script.js" defer></script>
 </body>

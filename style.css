@@ -56,6 +56,11 @@ input[type="number"] {
   box-shadow: 0 6px 12px #00a8de;
   background: #fffac0
 }
+
+.gen_buttons {
+  display: flex;
+  justify-content: space-around;
+}
 .but_generate {
   color: #fff;
   padding: 8px;
