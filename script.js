@@ -87,6 +87,15 @@ function loadInputsAndSchedule() {
     document.getElementById("interval-days").value = savedInputs.intervalDaysInput;
     document.getElementById("person1").value = savedInputs.person1;
     document.getElementById("person2").value = savedInputs.person2;
+  } else {
+    // Если данных нет, устанавливаем значения по умолчанию
+    document.getElementById("start-date").value = "2025-01-01";
+    document.getElementById("interval-days").value = "42";
+    document.getElementById("person1").value = "Person1";
+    document.getElementById("person2").value = "Person2";
+
+    // Автоматическая генерация с данными по умолчанию
+    generateSchedule();
   }
 
   // Загружаем данные для таблицы
@@ -131,8 +140,10 @@ function loadInputsAndSchedule() {
     });
   }
 }
+
 // Загружаем данные при загрузке страницы
 window.onload = loadInputsAndSchedule;
+
 
 
 function saveCurrentTable() {
